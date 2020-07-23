@@ -1,0 +1,29 @@
+<%= render "admin/shared/header" %>
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <h1 class="m-0 text-dark"><%= @h1 %></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="content">
+    <div class="container-fluid">
+      <%= "<div class='alert-success p-2 mb-2'>#{notice}</div>".html_safe if notice.present? %>
+      <%= "<div class='alert-error p-2 mb-2'>#{alert}</div>".html_safe if alert.present? %>
+      <% if @model.present? && @model.try(:errors).present? %>
+        <div class='alert-error p-2 mb-2'>
+          <ul class="mb-0">
+            <% @model.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </section>
+</div>
+<%= render "admin/shared/footer" %>

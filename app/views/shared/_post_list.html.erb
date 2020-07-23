@@ -1,0 +1,11 @@
+<% if posts.present? %>
+  <%= render "posts/post_v1", post: posts[:first] if posts[:first].present? %>
+
+  <% if posts[:group1].present? %>
+    <div class="row">
+      <%= render partial: 'posts/post_v2', collection: posts[:group1], as: :post %>
+    </div>
+  <% end %>
+
+  <%= render partial: 'posts/post_v3', collection: posts[:group2], as: :post if posts[:group2].present? %>
+<% end %>

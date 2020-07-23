@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-body">
+    <div id="jsGrid1" class="jsgrid">
+      <table class="jsgrid-table">
+        <tr class="jsgrid-header-row">
+          <th style="width:50px;" class="jsgrid-header-cell">id</th>
+          <th style="width:130px;" class="jsgrid-header-cell">user photo</th>
+          <th style="width:130px;" class="jsgrid-header-cell">user name</th>
+          <th class="jsgrid-header-cell">body</th>
+          <th style="width:80px;" class="jsgrid-header-cell"></th>
+        </tr>
+        <%= render partial: 'admin/comments/comment_item_list', collection: @model, as: 'comment' %>
+      </table>
+      <%= will_paginate @model, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

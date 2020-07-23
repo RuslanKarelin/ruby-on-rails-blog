@@ -1,0 +1,43 @@
+<% if posts_in_header.present? && !posts_in_header[:first].nil? %>
+  <div class="section">
+    <div class="container">
+      <div id="hot-post" class="row hot-post">
+        <div class="col-md-8 hot-post-left">
+          <div class="post post-thumb">
+            <%= render partial: 'posts/image', locals: {post: posts_in_header[:first], category: posts_in_header[:first].category} if posts_in_header[:first].image.present? %>
+            <div class="post-body">
+              <div class="post-category">
+                <%= render partial: 'categories/links', collection: posts_in_header[:first].categories, as: :category if posts_in_header[:first].categories.present? %>
+              </div>
+              <h3 class="post-title title-lg">
+                <%= link_to posts_in_header[:first].name, post_path(posts_in_header[:first].category.alias, posts_in_header[:first].alias) %></h3>
+              <ul class="post-meta">
+                <li><%= link_to posts_in_header[:first].user.profile.name, profile_path(posts_in_header[:first].user.profile) if posts_in_header[:first].user.try(:profile).present? %></li>
+                <li><%= posts_in_header[:first].created_at.strftime('%d-%m-%Y') %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 hot-post-right">
+
+          <% posts_in_header[:group].each do |post| %>
+            <div class="post post-thumb">
+              <%= render partial: 'posts/image', locals: {post: post, category: post.category} if post.image.present? %>
+              <div class="post-body">
+                <div class="post-category">
+                  <%= render partial: 'categories/links', collection: post.categories, as: :category if post.categories.present? %>
+                </div>
+                <h3 class="post-title"><%= link_to post.name, post_path(post.category.alias, post.alias) %>
+                </h3>
+                <ul class="post-meta">
+                  <li><%= link_to post.user.profile.name, profile_path(post.user.profile) if post.user.try(:profile).present? %></li>
+                  <li><%= post.created_at.strftime('%d-%m-%Y') %></li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

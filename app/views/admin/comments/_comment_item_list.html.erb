@@ -1,0 +1,15 @@
+<tr class="jsgrid-row">
+  <td class="jsgrid-cell"><%= comment.id %></td>
+  <td class="jsgrid-cell"><%= image_tag(comment.user.profile.image.name.url(:small_thumb), width: 100) if comment.try(:user).present? && comment.user.profile.image.present? %></td>
+  <td class="jsgrid-cell"><%= comment.try(:user).present? ? comment.user.profile.name : comment.name %></td>
+  <td class="jsgrid-cell"><%= comment.body %></td>
+  <td class="jsgrid-cell">
+    <%= link_to edit_admin_comment_path(comment) do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to admin_comment_path(comment), method: :delete, data: {:confirm => 'Are you sure?'} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

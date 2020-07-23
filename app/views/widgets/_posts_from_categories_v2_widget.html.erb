@@ -1,0 +1,24 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="section-title">
+          <h2 class="title">Lifestyle</h2>
+        </div>
+        <%= render partial: 'posts/post_v4', collection: posts_from_categories([1], 1), as: :post, cached: true %>
+      </div>
+      <div class="col-md-4">
+        <div class="section-title">
+          <h2 class="title">Fashion</h2>
+        </div>
+        <%= render partial: 'posts/post_v4', collection: posts_from_categories([2], 1), as: :post, cached: true %>
+      </div>
+      <div class="col-md-4">
+        <div class="section-title">
+          <h2 class="title">Health</h2>
+        </div>
+        <%= render partial: 'posts/post_v4', collection: posts_from_categories([5], 1), as: :post, cached: true %>
+      </div>
+    </div>
+  </div>
+</div>

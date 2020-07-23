@@ -1,0 +1,19 @@
+<tr class="jsgrid-row">
+  <td class="jsgrid-cell"><%= page.id %></td>
+  <td class="jsgrid-cell"><%= image_tag(page.image.name.url(:small_thumb), width: 100) if page.image.present? %></td>
+  <td class="jsgrid-cell"><%= page.name %></td>
+  <td class="jsgrid-cell"><%= page.alias %></td>
+  <td class="jsgrid-cell">
+    <%= link_to page_path(page.alias), target: "_blank" do %>
+      <i class="fa fa-eye"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to edit_admin_page_path(page) do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to admin_page_path(page), method: :delete, data: {:confirm => 'Are you sure?'} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

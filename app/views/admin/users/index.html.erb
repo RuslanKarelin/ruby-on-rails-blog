@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-12">
+    <%= link_to 'Create user', new_admin_user_path, role: 'button', class: 'mb-4 btn btn-primary' %>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div id="jsGrid1" class="jsgrid">
+      <table class="jsgrid-table">
+        <tr class="jsgrid-header-row">
+          <th style="width:50px;" class="jsgrid-header-cell">id</th>
+          <th style="width:130px;" class="jsgrid-header-cell">photo</th>
+          <th class="jsgrid-header-cell">name</th>
+          <th class="jsgrid-header-cell">email</th>
+          <th class="jsgrid-header-cell">roles</th>
+          <th class="jsgrid-header-cell">ban</th>
+          <th style="width:80px;" class="jsgrid-header-cell"></th>
+        </tr>
+        <%= render partial: 'admin/users/user_item_list', collection: @model, as: 'user' %>
+      </table>
+      <%= will_paginate @model, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

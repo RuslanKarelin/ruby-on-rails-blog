@@ -1,0 +1,27 @@
+<div class="section-row">
+  <div class="section-title">
+    <h3 class="title">Leave a reply</h3>
+  </div>
+  <%= form_tag "/comments/add", class: 'post-reply', remote: true, data: {type: :html} do |f| %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <textarea id="comment_body" class="input" name="body" placeholder="Message"></textarea>
+        </div>
+      </div>
+      <% unless current_user %>
+        <div class="col-md-12">
+          <div class="form-group">
+            <input id="author_name" class="input" type="text" name="name" placeholder="Name">
+          </div>
+        </div>
+      <% end %>
+      <div class="col-md-12">
+        <button id="comment_submit_btn" class="primary-button">Submit</button>
+      </div>
+      <input type="hidden" name="type" value="<%= @model.class %>">
+      <input type="hidden" name="model" value="<%= @model.id %>">
+      <input type="hidden" name="parent_id" value="">
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+<tr class="jsgrid-row">
+  <td class="jsgrid-cell"><%= post.id %></td>
+  <td class="jsgrid-cell"><%= image_tag(post.image.name.url(:small_thumb), width: 100) if post.image.present? %></td>
+  <td class="jsgrid-cell"><%= post.name %></td>
+  <td class="jsgrid-cell"><%= post.alias %></td>
+  <td class="jsgrid-cell"><%= post.category.name if post.category.present? %></td>
+  <td class="jsgrid-cell post-category"><%= render partial: 'categories/links', collection: post.categories, as: :category if post.categories.present? %></td>
+  <td class="jsgrid-cell"><%= post.published %></td>
+  <td class="jsgrid-cell">
+    <%= link_to post_path(post.category.alias, post.alias), target: "_blank" do %>
+      <i class="fa fa-eye"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to edit_admin_post_path(post) do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to admin_post_path(post), method: :delete, data: {:confirm => 'Are you sure?'} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,21 @@
+<% if @model.present? %>
+<div id="post-header" class="page-header">
+  <div class="page-header-bg" style="background-image: url('<%=asset_path(@page_header_bg)%>');" data-stellar-background-ratio="0.5"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="post-category">
+          <%= render partial: 'categories/links', collection: @model.categories, as: :category %>
+        </div>
+        <h1><%= @h1 %></h1>
+        <ul class="post-meta">
+          <li><%= link_to @model.user.profile.name, profile_path(@model.user.profile) if @model.user.try(:profile).present? %></li>
+          <li><%= @model.created_at.strftime('%d-%m-%Y') %></li>
+          <li><i class="fa fa-comments"></i> <%= @model.comments.count %></li>
+          <li><i class="fa fa-eye"></i> 807</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

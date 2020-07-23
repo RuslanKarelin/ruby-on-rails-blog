@@ -1,0 +1,10 @@
+<li class="item">
+  <div class="product-img">
+    <%= image_tag post.image.name.url(:small_thumb) %>
+  </div>
+  <div class="product-info">
+    <span class="product-description">
+    <%= link_to post.name, post_path(post.category.alias, post.alias), class: "product-title" %>
+    </span>
+  </div>
+</li>

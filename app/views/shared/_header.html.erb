@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title %></title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= "
+  <div class='alert-success p-2 mb-2 message-item'>
+  <div class=\"container\">
+    <div class=\"row\">
+      <div class=\"col-xs-11\">#{notice}</div>
+      <div class=\"col-xs-1 text-right\"><i class=\"fa fa-close\"></i></div>
+    </div>
+  </div>
+</div>
+".html_safe if notice.present? %>
+<%= "<div class='alert-success p-2 mb-2 message-item'>
+  <div class=\"container\">
+    <div class=\"row\">
+      <div class=\"col-xs-11\">#{alert}</div>
+      <div class=\"col-xs-1 text-right\"><i class=\"fa fa-close\"></i></div>
+    </div>
+  </div>
+</div>
+".html_safe if alert.present? %>
+<div class="top_menu">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <% if user_signed_in? %>
+          <span>Здравствуйте, <%= link_to current_user.email, profile_path(current_user.profile) if current_user.try(:profile).present? %></span>
+          <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to 'Войти', new_user_session_path %>
+          или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="header">
+
+  <div id="nav">
+
+    <div id="nav-top">
+      <div class="container">
+
+        <ul class="nav-social">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+
+
+        <div class="nav-logo">
+          <%= link_to home_path, class: 'logo' do %>
+            <%= image_tag "logo.png" %>
+          <% end %>
+        </div>
+
+
+        <div class="nav-btns">
+          <button class="aside-btn"><i class="fa fa-bars"></i></button>
+          <button class="search-btn"><i class="fa fa-search"></i></button>
+          <div id="nav-search">
+            <%= form_tag(search_path, method: "get", enforce_utf8: false) do %>
+              <%= text_field_tag :q, nil, {class: 'input', placeholder: 'Enter your search...'} %>
+            <% end %>
+            <button class="nav-close search-close">
+              <span></span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div id="nav-bottom">
+      <div class="container">
+        <%= build_mmmenu(@main_menu, templates_path: 'mmmenu/main_menu') %>
+      </div>
+    </div>
+    <div id="nav-aside">
+      <%= build_mmmenu(@aside_menu, templates_path: 'mmmenu/aside_menu') %>
+      <button class="nav-close nav-aside-close"><span></span></button>
+    </div>
+  </div>
+
+  <%= yield :page_header %>
+
+</header>

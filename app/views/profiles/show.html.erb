@@ -1,0 +1,22 @@
+<% if current_user && current_user.current_profile?(@model) %>
+  <a href="#" class="show_form">Edit profile</a>
+  <div class="form_box">
+    <%= render 'form' %>
+  </div>
+  <% if current_user.is_author? %>
+    <a href="#" class="add_post">Add post</a>
+    <div class="form_box">
+      <%= render 'form_add_post' %>
+    </div>
+  <% end %>
+<% end %>
+<% posts = @model.user.posts.order(created_at: :desc).paginate(page: 1, per_page: 6) %>
+<%= render partial: 'posts/post_v3', collection: posts, as: :post if posts.present? %>
+
+<div class="more_posts"></div>
+
+<% if @model.user.try(:posts).count > 6 %>
+  <div class="section-row loadmore text-center">
+    <%= link_to 'Load More', {controller: "application", action: "get_pagination", page: 1, user: @model.user.id}, class: 'primary-button', remote: true, data: [type: :json, "disable-with": "Saving..."], "data-params": ['id=10&cat=55'] %>
+  </div>
+<% end %>

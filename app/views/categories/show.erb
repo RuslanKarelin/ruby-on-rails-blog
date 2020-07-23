@@ -1,0 +1,22 @@
+<%= @model.top_text.html_safe if @model.top_text %>
+<% posts = @model.split_posts_to_group %>
+<% if posts.present? %>
+  <%= render "posts/post_v1", post: posts[:first] if posts[:first].present? %>
+
+  <% if posts[:group1].present? %>
+    <div class="row">
+      <%= render partial: 'posts/post_v2', collection: posts[:group1], as: :post %>
+    </div>
+  <% end %>
+
+  <%= render partial: 'posts/post_v3', collection: posts[:group2], as: :post if posts[:group2].present? %>
+
+  <div class="more_posts"></div>
+
+  <% if @model.try(:posts).count > 6 %>
+    <div class="section-row loadmore text-center">
+      <%= link_to 'Load More', {controller: "application", action: "get_pagination", page: 1, category: @model.id}, class: 'primary-button', remote: true, data: [type: :json, "disable-with": "Saving..."], "data-params": ['id=10&cat=55'] %>
+    </div>
+  <% end %>
+<% end %>
+<%= @model.bottom_text.html_safe if @model.bottom_text %>

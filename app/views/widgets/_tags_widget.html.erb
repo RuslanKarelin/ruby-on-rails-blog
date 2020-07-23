@@ -1,0 +1,10 @@
+<div class="footer-widget">
+  <h3 class="footer-title">Tags</h3>
+  <div class="tags-widget">
+    <ul>
+      <% get_tags.each do |taggging| %>
+        <li><%= link_to taggging.tag.name, tags_path(taggging.tag.name) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

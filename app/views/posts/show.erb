@@ -1,0 +1,18 @@
+<div class="section-row">
+  <div class="post-share">
+    <a href="#" class="social-facebook"><i class="fa fa-facebook"></i><span>Share</span></a>
+    <a href="#" class="social-twitter"><i class="fa fa-twitter"></i><span>Tweet</span></a>
+    <a href="#" class="social-pinterest"><i class="fa fa-pinterest"></i><span>Pin</span></a>
+    <a href="#"><i class="fa fa-envelope"></i><span>Email</span></a>
+  </div>
+</div>
+
+<div class="section-row">
+  <%= @model.text.html_safe if @model.text %>
+  <%= render partial: 'widgets/post_tags_widget' %>
+  <%= render partial: 'widgets/prev_next_post_widget' %>
+  <%= render partial: 'widgets/post_author_widget' %>
+  <%= render partial: 'widgets/related_posts_widget' %>
+  <%= render partial: 'shared/comments' %>
+  <%= render 'comment_form' %>
+</div>

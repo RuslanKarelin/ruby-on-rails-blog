@@ -1,0 +1,5 @@
+<li>
+  <%= link_to category_path(category.alias) do %>
+    <%= category.name %> <span><%= category.posts.published.count if category.posts.published.present? %></span>
+  <% end %>
+</li>

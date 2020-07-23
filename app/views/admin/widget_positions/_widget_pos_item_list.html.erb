@@ -1,0 +1,13 @@
+<tr class="jsgrid-row">
+  <td class="jsgrid-cell"><%= widget_position.id %></td>
+  <td class="jsgrid-cell"><%= widget_position.name %></td>
+  <td class="jsgrid-cell">
+    <%= link_to edit_admin_widget_position_path(widget_position) do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to admin_widget_position_path(widget_position), method: :delete, data: {:confirm => 'Are you sure?'} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

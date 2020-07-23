@@ -1,0 +1,74 @@
+<%= javascript_include_tag Ckeditor.cdn_url %>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <%= nested_form_for @post, url: add_post_path, method: :post, html: {multipart: true} do |f| %>
+        <div class="card-body">
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_1">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <%= f.label :name %>
+                    <%= f.text_field :name, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :intro_text %>
+                    <%= f.text_area :intro_text, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :text %>
+                    <%= f.cktext_area :text, class: 'form-control editor' %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :category %>
+                    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: 'select2 select2-hidden-accessibles form-control'}) %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :categories %>
+                    <%= f.collection_select(:category_ids, Category.all, :id, :name, {:selected => @post.categories.map(&:id)}, {multiple: true, class: 'select2 select2-hidden-accessibles form-control'}) %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :tags %>
+                    <%= f.text_field :all_tags, class: 'form-control' %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= image_tag(@post.image.name, width: 300) if @post.image.present? %>
+                  </div>
+
+
+                  <%= f.fields_for :image do |image_form| %>
+                    <% if @post.image.present? && !@post.image.name.blank? %>
+                      <p>
+                        <label>
+                          <%= image_form.check_box :remove_name %>
+                          Remove image
+                        </label>
+                      </p>
+                    <% end %>
+                    <div class="form-group">
+                      <div class="custom-file">
+                        <%= image_form.label :image, value: 'Choose file', class: 'custom-file-label' %>
+                        <%= image_form.file_field :name, class: 'custom-file-input', id: 'customFile' %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <br>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :published, value: true %>
+          <%= submit_tag 'Save', class: 'btn btn-default' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

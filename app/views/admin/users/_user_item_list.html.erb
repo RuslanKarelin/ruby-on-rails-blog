@@ -1,0 +1,21 @@
+<tr class="jsgrid-row">
+  <td class="jsgrid-cell"><%= user.id %></td>
+  <td class="jsgrid-cell"><%= image_tag(user.profile.image.name.url(:small_thumb), width: 100) if user.profile.image.present? %></td>
+  <td class="jsgrid-cell"><%= user.profile.name %></td>
+  <td class="jsgrid-cell"><%= user.email %></td>
+  <td class="jsgrid-cell"><%= user.roles.map(&:name).join(', ') %></td>
+  <td class="jsgrid-cell"><%= user.profile.ban %></td>
+  <td class="jsgrid-cell">
+    <%= link_to profile_path(user.profile), target: "_blank" do %>
+      <i class="fa fa-eye"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to edit_admin_user_path(user) do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to admin_user_path(user), method: :delete, data: {:confirm => 'Are you sure?'} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

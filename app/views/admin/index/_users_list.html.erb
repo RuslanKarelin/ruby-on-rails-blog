@@ -1,0 +1,5 @@
+<li>
+  <div class="img_wrapper"><%= image_tag(user.profile.image.name.url(:small_thumb)) if user.profile.image.present? %></div>
+  <%= link_to user.profile.name, edit_admin_user_path(user), class: 'users-list-name' %>
+  <span class="users-list-date"><%= user.created_at.strftime('%d-%m-%Y') %></span>
+</li>

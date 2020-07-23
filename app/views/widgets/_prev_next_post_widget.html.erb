@@ -1,0 +1,23 @@
+<%
+  prev_post = PostsRepository.prev(@model)
+  next_post = PostsRepository.next(@model)
+%>
+<div class="section-row">
+  <div class="post-nav">
+    <% if prev_post.present? %>
+      <div class="prev-post">
+        <%= render partial: 'posts/image', locals: {post: prev_post, category: prev_post.category} if prev_post.image.present? %>
+        <h3 class="post-title"><%= link_to prev_post.name, post_path(prev_post.category.alias, prev_post.alias) %></h3>
+        <span>Previous post</span>
+      </div>
+    <% end %>
+
+    <% if next_post.present? %>
+      <div class="next-post">
+        <%= render partial: 'posts/image', locals: {post: next_post, category: next_post.category} if next_post.image.present? %>
+        <h3 class="post-title"><%= link_to next_post.name, post_path(next_post.category.alias, next_post.alias) %></h3>
+        <span>Next post</span>
+      </div>
+    <% end %>
+  </div>
+</div>

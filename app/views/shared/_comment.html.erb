@@ -1,0 +1,22 @@
+<% collection.hash_tree.each do |comment, sub_item| %>
+  <div class="media">
+    <div class="media-left">
+      <%= image_tag comment.user.profile.image.name, class: 'media-object' if comment.user.present? && comment.user.profile.image.present? %>
+    </div>
+    <div class="media-body">
+      <div class="media-heading">
+        <h4><%= comment.user.try(:profile).present? ? comment.user.profile.name : comment.name %></h4>
+        <span class="time"><%= comment.created_at.ago_in_words %></span>
+        <% if current_user.try(:is_cms_user?) %>
+          <%= link_to comment_path(comment), remote: true, method: :delete, class: 'comment_destroy' do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <p><%= comment.body %></p>
+      <a href="#" data-id="<%= comment.id %>" class="reply">Reply</a>
+      <%= render partial: 'shared/comment', locals: {collection: comment.children} if comment.children.present? %>
+    </div>
+  </div>
+<% end %>
+

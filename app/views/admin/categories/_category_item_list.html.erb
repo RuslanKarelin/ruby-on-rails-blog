@@ -1,0 +1,20 @@
+<tr class="jsgrid-row">
+  <td class="jsgrid-cell"><%= category.id %></td>
+  <td class="jsgrid-cell"><%= image_tag(category.image.name.url(:small_thumb), width: 100) if category.image.present? %></td>
+  <td class="jsgrid-cell"><%= category.name %></td>
+  <td class="jsgrid-cell"><%= category.alias %></td>
+  <td class="jsgrid-cell"><%= category.parent.name if category.parent.present? %></td>
+  <td class="jsgrid-cell">
+    <%= link_to category_path(category.alias), target: "_blank" do %>
+      <i class="fa fa-eye"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to edit_admin_category_path(category) do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to admin_category_path(category), method: :delete, data: {:confirm => 'Are you sure?'} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

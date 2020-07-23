@@ -1,0 +1,16 @@
+<% tags = @model.tags %>
+
+<% if tags.present? %>
+  <div class="section-row">
+    <div class="post-tags">
+      <ul>
+        <li>TAGS:</li>
+        <% tags.each do |tag| %>
+          <li>
+            <%= link_to tag.name, tags_path(tag.name) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

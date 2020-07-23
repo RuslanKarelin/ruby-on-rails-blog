@@ -1,0 +1,6 @@
+<div class="aside-widget">
+  <div class="section-title">
+    <h2 class="title">Popular Posts</h2>
+  </div>
+  <%= render partial: 'posts/post_sidebar', collection: @popular_posts, as: :post, cached: true %>
+</div>

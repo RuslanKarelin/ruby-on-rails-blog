@@ -1,0 +1,8 @@
+<li class="item">
+  <div class="product-img">
+    <%= image_tag(comment.user.profile.image.name.url(:small_thumb), width: 100) if comment.try(:user).present? && comment.user.profile.image.present? %>
+  </div>
+  <div class="product-info">
+    <span class="product-description"><%= comment.body %></span>
+  </div>
+</li>

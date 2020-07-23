@@ -1,0 +1,99 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <%= image_tag current_user.profile.image.name, class: 'brand-image img-circle elevation-3' if current_user.profile.image.present? %>
+      </div>
+      <div class="info">
+        <a href="#" class="d-block"><%= current_user.profile.name %></a>
+      </div>
+    </div>
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <%= link_to admin_categories_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-th"></i>
+            <p>
+              Categories
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_posts_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-copy"></i>
+            <p>
+              Posts
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_pages_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-book"></i>
+            <p>
+              Pages
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_users_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-users"></i>
+            <p>
+              Users
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item has-treeview">
+          <%= link_to admin_widgets_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-sticky-note"></i>
+            <p>
+              Widgets
+              <i class="fa fa-angle-left right"></i>
+            </p>
+          <% end %>
+          <ul class="nav nav-treeview" style="display: none;">
+            <li class="nav-item">
+              <%= link_to admin_widgets_path, class: 'nav-link' do %>
+                <i class="fa fa-circle nav-icon"></i>
+                <p>
+                  Widgets
+                </p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_widget_positions_path, class: 'nav-link' do %>
+                <i class="fa fa-circle nav-icon"></i>
+                <p>
+                  Widget Positions
+                </p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_comments_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-comments"></i>
+            <p>
+              Comments
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_roles_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-unlock"></i>
+            <p>
+              Roles
+            </p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_tags_path, class: 'nav-link' do %>
+            <i class="nav-icon fa fa-tags"></i>
+            <p>
+              Tags
+            </p>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

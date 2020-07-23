@@ -1,0 +1,23 @@
+<% if @model.user.present? %>
+  <div class="section-row">
+    <div class="section-title">
+      <h3 class="title">About <%= link_to @model.user.profile.name, profile_path(@model.user.profile) %></h3>
+    </div>
+    <div class="author media">
+      <div class="media-left">
+        <%= link_to profile_path(@model.user.profile) do %>
+          <%= image_tag @model.user.profile.image.name, class: 'author-img media-object' if @model.user.profile.image.present? %>
+        <% end %>
+      </div>
+      <div class="media-body">
+        <p><%= @model.user.profile.description %></p>
+        <ul class="author-social">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
