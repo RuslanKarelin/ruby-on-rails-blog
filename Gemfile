@@ -13,7 +13,7 @@ gem "font-awesome-rails"
 gem 'devise'
 gem 'cancancan'
 gem 'will_paginate-bootstrap'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick'
 gem 'nested_form'
 gem 'babosa'
